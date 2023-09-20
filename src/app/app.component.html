@@ -1,0 +1,47 @@
+
+<html>
+<body>
+<p id="item1"></p>
+<p id="item2"></p>
+
+<script>
+
+  const myJSON = '{"name":"alexa", "age":30}';
+  const myObj = JSON.parse(myJSON);
+  document.getElementById("item1").innerHTML = myObj.name;
+  document.getElementById("item2").innerHTML = myObj.age;
+</script>
+
+
+Access-Control-Allow-Origin
+<h1>Consumiendo datos desde una API desde un servicio</h1>
+
+<h2>Divisas</h2>
+<!-- objectKeys(data) | keyvalue -->
+
+<ul>
+<li *ngFor="let item of data | keyvalue">
+
+  <br>{{item.key | json}} : {{item.value | json}}
+
+</li>
+</ul>
+
+
+<h2>formato json - Divisas</h2>
+     <!--trae todo el json-->
+    <pre> {{ data | json }} </pre>
+
+
+
+
+
+<h2>formato json - Emisoras</h2>
+    <pre> {{ emisora | json }} </pre>
+
+</body>
+</html>
+
+
+
+
