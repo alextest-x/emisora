@@ -1,17 +1,7 @@
 
-<html>
 <body>
-<p id="item1"></p>
-<p id="item2"></p>
-
-<script>
-
-  const myJSON = '{"name":"alexa", "age":30}';
-  const myObj = JSON.parse(myJSON);
-  document.getElementById("item1").innerHTML = myObj.name;
-  document.getElementById("item2").innerHTML = myObj.age;
-</script>
-
+  <h2>Looping Object Properties</h2>
+  <p id="demo"></p>
 
 Access-Control-Allow-Origin
 <h1>Consumiendo datos desde una API desde un servicio</h1>
@@ -22,25 +12,34 @@ Access-Control-Allow-Origin
 <ul>
 <li *ngFor="let item of data | keyvalue">
 
-  <br>{{item.key | json}} : {{item.value | json}}
-
+  <br>{{item.key | json }} : {{item.value | json }}
 </li>
 </ul>
 
 
 <h2>formato json - Divisas</h2>
-     <!--trae todo el json-->
-    <pre> {{ data | json }} </pre>
+
+    <ul>
+      <li *ngFor="let item of data | keyvalue">
 
 
+        <pre>{{item.key | json }} : {{item.value | json }}</pre>
+      </li>
+      </ul>
 
 
+      <h2>formato json - Emisora -  Alsea</h2>
+      <ul>
+        <li *ngFor="let item of emisora | keyvalue">
 
-<h2>formato json - Emisoras</h2>
-    <pre> {{ emisora | json }} </pre>
+          <pre>{{item.key | json}} : {{item.value | json }}</pre>
+
+        </li>
+        </ul>
+
 
 </body>
-</html>
+
 
 
 

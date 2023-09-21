@@ -8,10 +8,16 @@ import { Observable } from 'rxjs';
 })
 
 export class DivisasService {
+  //cargarEmisoras() {
+
+  //}
 
   private urlDivisa='https://api.databursatil.com/v1/divisas?token=5fd32fb435065f45a4d42e49013297';
 
+
+
   private url='https://api.databursatil.com/v1/emisoras?token=5fd32fb435065f45a4d42e49013297&letra=A&mercado=local';
+
 
 
   //private urlDivisa='https://api.databursatil.com/v1/divisas?token=5fd32fb435065f45a4d42e49013297';
@@ -21,20 +27,18 @@ export class DivisasService {
   //divisas: Divisa {} = {};
 
   constructor(private http: HttpClient) {}
-    //this.cargarDivisas();
-    //console.log('service Http');
-    //}
 
-   public cargarDivisas():Observable<any>{
+
+   public cargarDivisa():Observable<any>{
    return this.http.get<any>(this.urlDivisa);
 
    }
 
 
-   public getJson():Observable<any>{
+   public getJsonDivisa():Observable<any>{
     return this.http.get<any>(this.url);
 
-   }
+  }
 
    /*
       public getJson(url: string){

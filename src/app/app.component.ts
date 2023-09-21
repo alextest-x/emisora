@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DivisasService } from './services/divisas.service';
 import { DivisaInfo } from './interfaces/divisaInfo.interface';
+import { EmisoraInfo } from './interfaces/emisora.interface';
+import { EmisorasService } from './services/emisoras.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class AppComponent implements OnInit{
   //data: any[]=[];
   data: DivisaInfo[]=[];
 
-  emisora: any[]=[];
+  emisora: EmisoraInfo[]=[];
 
 /*
    JSON.parse
@@ -27,21 +29,26 @@ export class AppComponent implements OnInit{
 */
 
 
-  constructor(private divisasService: DivisasService){
+  constructor(private divisasService: DivisasService,
+              private emisorasService: EmisorasService){
+
   console.log('el componente se ha creado');
 
   }
 
   ngOnInit():void {
-    this.llenarData();
-    this.leerEmisoras();
+    this.llenarDivisa();
+    this.llenarEmisora();
+
+    //this.leerDivisas();
+    //this.leerEmisorasAll();
 
     }
 
 
-    llenarData(){
-      console.log('el componnente se ha inicalizado');
-      this.divisasService.cargarDivisas()
+    llenarDivisa(){
+      console.log('el componnente se ha inicalizado en divisa');
+      this.divisasService.cargarDivisa()
       .subscribe(DivisaInfo => {
          this.data= DivisaInfo;
 
@@ -59,13 +66,70 @@ export class AppComponent implements OnInit{
 
     }
 
-    leerEmisoras(){
-      console.log('leyendo emisoras');
-      this.divisasService.getJson()
+    llenarEmisora(){
+      console.log('el componnente se ha inicalizado en emisora');
+      this.emisorasService.cargarEmisora()
+      .subscribe(EmisoraInfo => {
+         this.emisora= EmisoraInfo;
+
+
+
+
+
+
+         /*
+         //leyendo key
+        const myJSON = '{"name":"John", "age":30, "car":null}';
+        const myObj = JSON.parse(myJSON);
+
+        let text = "";
+        for (const x in myObj) {
+        text += x + ", ";
+        console.log(text);
+        }
+
+         //leyendo value
+         const myJSON1 = '{"name":"John", "age":30, "car":null}';
+         const myObj1 = JSON.parse(myJSON1);
+
+         let text1 = "";
+         for (const x in myObj1) {
+         text1 += myObj1[x] + ", ";
+         console.log(text1);
+
+        }
+
+       */
+
+
+
+        console.log('leer emisora alsea');
+        console.log(this.emisora);
+
+        console.log('JSON.stringify');
+        console.log(JSON.stringify(this.data, null, '-'));
+     });
+
+    }
+
+
+    leerEmisorasAll(){
+      //console.log('leyendo todas las emisoras');
+      this.emisorasService.getJsonEmisora()
       .subscribe(emisora => {
         this.emisora= emisora;
-        console.log('leer emisora');
+        console.log('leer todas las emisoras');
         console.log(emisora);
+        });
+    }
+
+    leerDivisas(){
+      //console.log('leyendo todas las emisoras');
+      this.divisasService.getJsonDivisa()
+      .subscribe(DivisaInfo => {
+        this.emisora= DivisaInfo;
+        console.log('leer todas las emisoras');
+        console.log(DivisaInfo);
         });
     }
 
@@ -73,17 +137,21 @@ export class AppComponent implements OnInit{
 
 
 /*
-      llenarData(){
-        console.log('el componnente se ha inicalizado');
-        this.divisasService.cargarDivisas()
-        .subscribe(data => {
-           this.data= data;
-          //this.paises = data.map(p => p.name);
-          console.log('leyendo datos');
-          console.log(this.data);
-          //console.log('obteniendo solo un valor', this.data[0]);
-          console.log('obteniendo el valor this.data[0]  :', this.data[0]);
-          console.log('obteniendo el valor this.data[1]  :', this.data[1].HERDEZ[0].Bolsa);
+
+ llenarEmisora(){
+      console.log('el componnente se ha inicalizado en emisora');
+      this.emisorasService.cargarEmisora()
+      .subscribe(EmisoraInfo => {
+         this.emisora= EmisoraInfo;
+
+        console.log('leer emisora alsea');
+        console.log(this.emisora);
+
+        console.log('JSON.stringify');
+        console.log(JSON.stringify(this.data, null, '-'));
+     });
+
+    }
 
          });
 
